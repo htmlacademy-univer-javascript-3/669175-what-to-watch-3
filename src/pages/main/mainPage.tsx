@@ -1,11 +1,25 @@
 import FilmCard from '../../components/filmCard/filmCard';
 
-function MainPage() : JSX.Element {
+type mainFilmDescription = {
+  MainFilmName: string;
+  MainFilmPic: string;
+  MainFilmGenre: string;
+  MainFilmBack: string;
+  MainFilmYear: number;
+}
+
+type MainPageProps = {
+  mainFilm: mainFilmDescription;
+}
+
+function MainPage({mainFilm}: MainPageProps) : JSX.Element {
+  const {MainFilmPic, MainFilmBack, MainFilmName, MainFilmGenre, MainFilmYear} = mainFilm;
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={MainFilmBack} alt={MainFilmName} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -34,14 +48,14 @@ function MainPage() : JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={MainFilmPic} alt={MainFilmName} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{MainFilmName}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{MainFilmGenre}</span>
+                <span className="film-card__year">{MainFilmYear}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -104,173 +118,24 @@ function MainPage() : JSX.Element {
           <div className="catalog__films-list">
             <FilmCard img="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" name="Fantastic Beasts: The Crimes of Grindelwald" />
             <FilmCard img="img/bohemian-rhapsody.jpg" name="Bohemian Rhapsody" />
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
-
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/we-need-to-talk-about-kevin.jpg" alt="We need to talk about Kevin" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">We need to talk about Kevin</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/what-we-do-in-the-shadows.jpg" alt="What We Do in the Shadows" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">What We Do in the Shadows</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/revenant.jpg" alt="Revenant" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Revenant</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/johnny-english.jpg" alt="Johnny English" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Johnny English</a>
-              </h3>
-            </article>
-
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/shutter-island.jpg" alt="Shutter Island" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Shutter Island</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/pulp-fiction.jpg" alt="Pulp Fiction" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Pulp Fiction</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/no-country-for-old-men.jpg" alt="No Country for Old Men" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">No Country for Old Men</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/snatch.jpg" alt="Snatch" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Snatch</a>
-              </h3>
-            </article>
-
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/moonrise-kingdom.jpg" alt="Moonrise Kingdom" width="280" height="175" />
-
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Moonrise Kingdom</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/seven-years-in-tibet.jpg" alt="Seven Years in Tibet" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Seven Years in Tibet</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/midnight-special.jpg" alt="Midnight Special" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Midnight Special</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/war-of-the-worlds.jpg" alt="War of the Worlds" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">War of the Worlds</a>
-              </h3>
-            </article>
-
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/dardjeeling-limited.jpg" alt="Dardjeeling Limited" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Dardjeeling Limited</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/orlando.jpg" alt="Orlando" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Orlando</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/mindhunter.jpg" alt="Mindhunter" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Mindhunter</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/midnight-special.jpg" alt="Midnight Special" width="280" height="175" />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Midnight Special</a>
-              </h3>
-            </article>
+            <FilmCard img="img/macbeth.jpg" name="Macbeth" />
+            <FilmCard img="img/aviator.jpg" name="Aviator" />
+            <FilmCard img="img/we-need-to-talk-about-kevin.jpg" name="We need to talk about Kevin" />
+            <FilmCard img="img/what-we-do-in-the-shadows.jpg" name="What We Do in the Shadows" />
+            <FilmCard img="img/revenant.jpg" name="Revenant" />
+            <FilmCard img="img/johnny-english.jpg" name="Johnny English" />
+            <FilmCard img="img/shutter-island.jpg" name="Shutter Island" />
+            <FilmCard img="img/pulp-fiction.jpg" name="Pulp Fiction" />
+            <FilmCard img="img/no-country-for-old-men.jpg" name="No Country for Old Men" />
+            <FilmCard img="img/snatch.jpg" name="Snatch" />
+            <FilmCard img="img/moonrise-kingdom.jpg" name="Moonrise Kingdom" />
+            <FilmCard img="img/seven-years-in-tibet.jpg" name="Seven Years in Tibet" />
+            <FilmCard img="img/midnight-special.jpg" name="Midnight Special" />
+            <FilmCard img="img/war-of-the-worlds.jpg" name="War of the Worlds" />
+            <FilmCard img="img/dardjeeling-limited.jpg" name="Dardjeeling Limited" />
+            <FilmCard img="img/orlando.jpg" name="Orlando" />
+            <FilmCard img="img/mindhunter.jpg" name="Mindhunter" />
+            <FilmCard img="img/midnight-special.jpg" name="Midnight Special" />
           </div>
 
           <div className="catalog__more">
