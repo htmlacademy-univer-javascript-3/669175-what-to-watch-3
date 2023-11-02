@@ -1,6 +1,11 @@
-function filmPage(): JSX.Element {
+import { Helmet } from 'react-helmet-async';
+
+function FilmPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>Все о фильме</title>
+      </Helmet>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -41,13 +46,13 @@ function filmPage(): JSX.Element {
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlink:href="#play-s"></use>
+                    <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlink:href="#add"></use>
+                    <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
@@ -162,4 +167,4 @@ function filmPage(): JSX.Element {
   );
 }
 
-export default filmPage;
+export default FilmPage;
