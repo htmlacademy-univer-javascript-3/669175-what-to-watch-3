@@ -1,11 +1,12 @@
-type FilmCardProps = {
+type FilmCardInfo = {
+  key: number;
   name: string;
   img: string;
-}
+};
 
-function FilmCard({name, img}: FilmCardProps) : JSX.Element {
+function FilmCard({key, name, img}: FilmCardInfo) : JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" key={key}>
       <div className="small-film-card__image">
         <img src={img} alt={name} width="280" height="175" />
       </div>

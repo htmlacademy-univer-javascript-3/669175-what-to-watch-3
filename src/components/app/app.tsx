@@ -9,25 +9,20 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import PrivateRouteControl from '../privateRoute/privateRoute';
 import { HelmetProvider } from 'react-helmet-async';
+import { FilmInfo } from '../../types/filmsInfo';
 
-type mainFilmDescription = {
-  MainFilmName: string;
-  MainFilmPic: string;
-  MainFilmGenre: string;
-  MainFilmBack: string;
-  MainFilmYear: number;
-}
 
 type AppProps = {
-  mainFilm: mainFilmDescription;
+  mainFilmId: number;
+  filmList: FilmInfo[];
 }
 
-function App({mainFilm}: AppProps) : JSX.Element{
+function App({mainFilmId, filmList}: AppProps) : JSX.Element{
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoutes.Main} element={<MainPage mainFilm={mainFilm}/>} />
+          <Route path={AppRoutes.Main} element={<MainPage mainFilmId={mainFilmId} filmList={filmList}/>} />
           <Route path={AppRoutes.SingIn} element={<SignInPage />}/>
           <Route path={AppRoutes.MyList} element={
             <PrivateRouteControl isAuthorize={AuthorizationStatus.NoAuth}>

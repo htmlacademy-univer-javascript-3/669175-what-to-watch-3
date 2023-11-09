@@ -2,13 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
-const AppProps = {
-  MainFilmName: 'The Grand Budapest Hotel',
-  MainFilmPic: 'img/the-grand-budapest-hotel-poster.jpg',
-  MainFilmGenre: 'Drama',
-  MainFilmBack: 'img/bg-the-grand-budapest-hotel.jpg',
-  MainFilmYear: 2014
-};
+// Подключение моков
+import { filmList } from './mocks/films';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,6 +12,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App mainFilm={AppProps} />
+    <App mainFilmId={1} filmList={filmList} />
   </React.StrictMode>
 );
