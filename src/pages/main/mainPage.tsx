@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import FilmCard from '../../components/filmCard/filmCard';
 import { FilmInfo } from '../../types/filmsInfo';
+import FilmList from '../../components/filmList/filmList';
 
 type MainPageProps = {
   mainFilmId: number;
@@ -113,11 +113,7 @@ function MainPage({mainFilmId, filmList}: MainPageProps) : JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {
-              filmList.filter((film) => film.id !== mainFilmId).map((film) => <FilmCard key={film.id} name={film.name} img={film.img}/>)
-            }
-          </div>
+          <FilmList films={filmList.filter((film) => film.id !== mainFilmId)}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
