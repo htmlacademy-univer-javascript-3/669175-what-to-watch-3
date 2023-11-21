@@ -4,7 +4,9 @@ export type FilmInfo = {
   year: number;
   img: string;
   back: string;
+  playerPoster: string;
   genre: string;
   info: string;
   linkToWatch: string;
+  time: string;
 }

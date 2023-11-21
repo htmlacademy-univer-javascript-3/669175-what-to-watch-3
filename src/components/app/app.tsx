@@ -25,14 +25,14 @@ function App({mainFilmId, filmList}: AppProps) : JSX.Element{
           <Route path={AppRoutes.Main} element={<MainPage mainFilmId={mainFilmId} filmList={filmList}/>} />
           <Route path={AppRoutes.SingIn} element={<SignInPage />}/>
           <Route path={AppRoutes.MyList} element={
-            <PrivateRouteControl isAuthorize={AuthorizationStatus.NoAuth}>
-              <MyListPage />
+            <PrivateRouteControl isAuthorize={AuthorizationStatus.Auth}>
+              <MyListPage films={filmList.filter((film) => film.id % 2 === 0)}/>
             </PrivateRouteControl>
           }
           />
           <Route path={AppRoutes.Film} element={<FilmPage />}/>
-          <Route path={AppRoutes.AddReview} element={<AddReviewPage />} />
-          <Route path={AppRoutes.Player} element={<PlayerPage />} />
+          <Route path={AppRoutes.AddReview} element={<AddReviewPage films={filmList}/>} />
+          <Route path={AppRoutes.Player} element={<PlayerPage films={filmList}/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
