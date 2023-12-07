@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { FilmInfo } from '../../types/filmsInfo';
 import FilmList from '../../components/filmList/filmList';
+import { Link } from 'react-router-dom';
 
 type MainPageProps = {
   mainFilmId: number;
@@ -24,11 +25,11 @@ function MainPage({mainFilmId, filmList}: MainPageProps) : JSX.Element {
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -38,7 +39,7 @@ function MainPage({mainFilmId, filmList}: MainPageProps) : JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to="" className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -122,11 +123,11 @@ function MainPage({mainFilmId, filmList}: MainPageProps) : JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link to="" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

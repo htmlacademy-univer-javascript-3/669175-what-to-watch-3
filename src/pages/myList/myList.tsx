@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { FilmInfo } from '../../types/filmsInfo';
 import FilmList from '../../components/filmList/filmList';
+import { Link } from 'react-router-dom';
 
 type MyListPageProps = {
   films: FilmInfo[];
@@ -14,11 +15,11 @@ function MyListPage({films}: MyListPageProps): JSX.Element {
       </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
-          <a href="main.html" className="logo__link">
+          <Link to="/" className="logo__link">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{films.length}</span></h1>
@@ -29,7 +30,7 @@ function MyListPage({films}: MyListPageProps): JSX.Element {
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link to="" className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>
@@ -41,11 +42,11 @@ function MyListPage({films}: MyListPageProps): JSX.Element {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to="/" className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
