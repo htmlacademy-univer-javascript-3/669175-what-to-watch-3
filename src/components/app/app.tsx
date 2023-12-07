@@ -9,35 +9,30 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { AppRoutes, AuthorizationStatus } from '../../const';
 import PrivateRouteControl from '../privateRoute/privateRoute';
 import { HelmetProvider } from 'react-helmet-async';
+import { FilmInfo } from '../../types/filmsInfo';
 
-type mainFilmDescription = {
-  MainFilmName: string;
-  MainFilmPic: string;
-  MainFilmGenre: string;
-  MainFilmBack: string;
-  MainFilmYear: number;
-}
 
 type AppProps = {
-  mainFilm: mainFilmDescription;
+  mainFilmId: number;
+  filmList: FilmInfo[];
 }
 
-function App({mainFilm}: AppProps) : JSX.Element{
+function App({mainFilmId, filmList}: AppProps) : JSX.Element{
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoutes.Main} element={<MainPage mainFilm={mainFilm}/>} />
+          <Route path={AppRoutes.Main} element={<MainPage mainFilmId={mainFilmId} filmList={filmList}/>} />
           <Route path={AppRoutes.SingIn} element={<SignInPage />}/>
           <Route path={AppRoutes.MyList} element={
-            <PrivateRouteControl isAuthorize={AuthorizationStatus.NoAuth}>
-              <MyListPage />
+            <PrivateRouteControl isAuthorize={AuthorizationStatus.Auth}>
+              <MyListPage films={filmList.filter((film) => film.id % 2 === 0)}/>
             </PrivateRouteControl>
           }
           />
-          <Route path={AppRoutes.Film} element={<FilmPage />}/>
-          <Route path={AppRoutes.AddReview} element={<AddReviewPage />} />
-          <Route path={AppRoutes.Player} element={<PlayerPage />} />
+          <Route path={AppRoutes.Film} element={<FilmPage films={filmList}/>}/>
+          <Route path={AppRoutes.AddReview} element={<AddReviewPage films={filmList}/>} />
+          <Route path={AppRoutes.Player} element={<PlayerPage films={filmList}/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

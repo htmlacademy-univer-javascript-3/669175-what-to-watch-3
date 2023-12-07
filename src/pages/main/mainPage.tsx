@@ -1,20 +1,15 @@
 import { Helmet } from 'react-helmet-async';
-import FilmCard from '../../components/filmCard/filmCard';
-
-type mainFilmDescription = {
-  MainFilmName: string;
-  MainFilmPic: string;
-  MainFilmGenre: string;
-  MainFilmBack: string;
-  MainFilmYear: number;
-}
+import { FilmInfo } from '../../types/filmsInfo';
+import FilmList from '../../components/filmList/filmList';
+import { Link } from 'react-router-dom';
 
 type MainPageProps = {
-  mainFilm: mainFilmDescription;
+  mainFilmId: number;
+  filmList: FilmInfo[];
 }
 
-function MainPage({mainFilm}: MainPageProps) : JSX.Element {
-  const {MainFilmPic, MainFilmBack, MainFilmName, MainFilmGenre, MainFilmYear} = mainFilm;
+function MainPage({mainFilmId, filmList}: MainPageProps) : JSX.Element {
+  const mainFilm = filmList.filter((film) => film.id === mainFilmId)[0];
 
   return (
     <>
@@ -23,18 +18,18 @@ function MainPage({mainFilm}: MainPageProps) : JSX.Element {
       </Helmet>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={MainFilmBack} alt={MainFilmName} />
+          <img src={mainFilm.back} alt={mainFilm.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link to="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <ul className="user-block">
@@ -44,7 +39,7 @@ function MainPage({mainFilm}: MainPageProps) : JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
+              <Link to="" className="user-block__link">Sign out</Link>
             </li>
           </ul>
         </header>
@@ -52,14 +47,14 @@ function MainPage({mainFilm}: MainPageProps) : JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={MainFilmPic} alt={MainFilmName} width="218" height="327" />
+              <img src={mainFilm.img} alt={mainFilm.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{MainFilmName}</h2>
+              <h2 className="film-card__title">{mainFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{MainFilmGenre}</span>
-                <span className="film-card__year">{MainFilmYear}</span>
+                <span className="film-card__genre">{mainFilm.genre}</span>
+                <span className="film-card__year">{mainFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -119,28 +114,7 @@ function MainPage({mainFilm}: MainPageProps) : JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <FilmCard img="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" name="Fantastic Beasts: The Crimes of Grindelwald" />
-            <FilmCard img="img/bohemian-rhapsody.jpg" name="Bohemian Rhapsody" />
-            <FilmCard img="img/macbeth.jpg" name="Macbeth" />
-            <FilmCard img="img/aviator.jpg" name="Aviator" />
-            <FilmCard img="img/we-need-to-talk-about-kevin.jpg" name="We need to talk about Kevin" />
-            <FilmCard img="img/what-we-do-in-the-shadows.jpg" name="What We Do in the Shadows" />
-            <FilmCard img="img/revenant.jpg" name="Revenant" />
-            <FilmCard img="img/johnny-english.jpg" name="Johnny English" />
-            <FilmCard img="img/shutter-island.jpg" name="Shutter Island" />
-            <FilmCard img="img/pulp-fiction.jpg" name="Pulp Fiction" />
-            <FilmCard img="img/no-country-for-old-men.jpg" name="No Country for Old Men" />
-            <FilmCard img="img/snatch.jpg" name="Snatch" />
-            <FilmCard img="img/moonrise-kingdom.jpg" name="Moonrise Kingdom" />
-            <FilmCard img="img/seven-years-in-tibet.jpg" name="Seven Years in Tibet" />
-            <FilmCard img="img/midnight-special.jpg" name="Midnight Special" />
-            <FilmCard img="img/war-of-the-worlds.jpg" name="War of the Worlds" />
-            <FilmCard img="img/dardjeeling-limited.jpg" name="Dardjeeling Limited" />
-            <FilmCard img="img/orlando.jpg" name="Orlando" />
-            <FilmCard img="img/mindhunter.jpg" name="Mindhunter" />
-            <FilmCard img="img/midnight-special.jpg" name="Midnight Special" />
-          </div>
+          <FilmList films={filmList.filter((film) => film.id !== mainFilmId)}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -149,11 +123,11 @@ function MainPage({mainFilm}: MainPageProps) : JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a className="logo__link logo__link--light">
+            <Link to="" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">

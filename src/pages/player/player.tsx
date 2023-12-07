@@ -1,12 +1,30 @@
 import { Helmet } from 'react-helmet-async';
+import { FilmInfo } from '../../types/filmsInfo';
+import { Navigate, useParams } from 'react-router-dom';
+import { AppRoutes } from '../../const';
+import { FilmParams } from '../../types/filmParams';
 
-function PlayerPage(): JSX.Element {
+type PlayerPageProps = {
+  films: FilmInfo[];
+}
+
+function PlayerPage({films}: PlayerPageProps): JSX.Element {
+  const params = useParams<FilmParams>();
+  const filmId = params.id ? +params.id : -1;
+  const currentFilm = films.filter((film) => film.id === filmId)[0];
+
+  if (!currentFilm) {
+    return (
+      <Navigate to={AppRoutes.NotFound} />
+    );
+  }
+
   return (
     <div className="player">
       <Helmet>
         <title>Смотрим фильм</title>
       </Helmet>
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={currentFilm.playerPoster}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -16,7 +34,7 @@ function PlayerPage(): JSX.Element {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{'left' : 'left: 30%'}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{currentFilm.time}</div>
         </div>
 
         <div className="player__controls-row">
@@ -26,7 +44,7 @@ function PlayerPage(): JSX.Element {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{currentFilm.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
